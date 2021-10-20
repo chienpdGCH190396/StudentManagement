@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teacher Detail
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h4 class="text-primary  text-center">TEACHER DETAIL</h4>
+		<a class="btn btn-outline-primary mb-3" href="{{ path('teacher_index') }}">TEACHER LIST</a>
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Date of Birth</th>
+					<th scope="col">Email</th>
+					<th scope="col">Image</th>
+					<th scope="col">Classroom</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{teacher.name}}</td>
+					<td>{{teacher.dob|date('d/m/Y')}}</td>
+					<td>{{teacher.email}}</td>
+					<td>
+						<img src="{{asset('img/teacher/'~teacher.image)}}" alt="avatar" width="50" height="50"/>
+					</td>
+
+					<td>
+						{% for c in teacher.classroom %}
+							<a href="{{ path('classroom_detail', {'id': c.id }) }}">
+								{{ c.name }}
+							</a>
+							<br>
+						{% endfor %}
+					</td>
+
+					<td>
+						<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': teacher.id }) }}">EDIT</a>
+						<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': teacher.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

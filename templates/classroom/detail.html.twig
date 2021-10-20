@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Classroom Detail
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h4 class="text-primary  text-center">Classroom Detail</h4>
+		<a class="btn btn-outline-primary mb-3" href="{{ path('classroom_index') }}">BACK TO CLASSROOM LIST</a>
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Type</th>
+					<th scope="col">Description</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">{{classroom.name}}</th>
+					<td>{{classroom.type}}</td>
+					<td>{{classroom.description}}</td>
+					<td>
+						<a class="btn btn-primary" href="{{ path('classroom_edit', {'id': classroom.id }) }}">EDIT</a>
+						<a class="btn btn-warning" href="{{ path('classroom_delete', {'id': classroom.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
