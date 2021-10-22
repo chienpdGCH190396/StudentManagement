@@ -36,7 +36,15 @@ class ClassroomType extends AbstractType
                 'label' => 'Description',
                 'required' => false
             ])
-            // ->add('teachers', EntityType::class)
+
+             ->add('teachers', EntityType::class, [
+                 'label' => "Teachers",
+                 'class' => Teacher::class,
+                 'required' => true,
+                'choice_label' => "name",
+                'multiple' => true,
+                'expanded' => true,
+             ])
         ;
     }
 

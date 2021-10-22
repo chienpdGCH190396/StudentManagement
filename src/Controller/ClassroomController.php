@@ -62,25 +62,27 @@ class ClassroomController extends AbstractController
     /**
      * @Route("/classroom/add", name="classroom_add")
      */
-    public function classroomAdd(Request $request)
-    {
+    public function classroomAddAction(Request $request){
         $classroom = new Classroom();
         $form = $this->createForm(ClassroomType::class, $classroom);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()){
+        
+        if($form->isSubmitted() && $form->isValid()){
+
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($classroom);
             $manager->flush();
 
-            $this->addFlash('Success', 'Add new classroom successfully !');
-            return $this->redirectToRoute('classroom_index');
+            $this->addFlash('Success', 'Action success');
+            return $this->redirectToRoute("classroom_index");
+
         }
-        return $this->render(
-            'classroom/add.html.twig', 
-            [
-                "form" => $form->createView()
+        return $this-> render(
+            "classroom/add.html.twig",[
+                "form" => $form -> createView()
             ]
-        );
+            );
+        
     }
 
     /**
