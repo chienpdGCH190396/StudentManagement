@@ -20,25 +20,24 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>{{teacher.name}}</td>
-					<td>{{teacher.dob|date('d/m/Y')}}</td>
-					<td>{{teacher.email}}</td>
+					<td>{{student.name}}</td>
+					<td>{{student.dob|date('d/m/Y')}}</td>
+					<td>{{student.email}}</td>
+				
+						{# <img src="{{asset('img/teacher/'~teacher.image)}}" alt="avatar" width="50" height="50"/> #}
+				
 					<td>
-						<img src="{{asset('img/teacher/'~teacher.image)}}" alt="avatar" width="50" height="50"/>
-					</td>
-
-					<td>
-							{% for c in teacher.classroom %}
-							<a href="{{ path('classroom_detail', {'id': c.id }) }}">
-								{{ c.name }}
+							{% for s in student.classroom %}
+							<a href="{{ path('classroom_detail', {'id': s.id }) }}">
+								{{ s.name }}
 							</a>
 							<br>
 						{% endfor %}
 					</td>
 
 					<td>
-						<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': teacher.id }) }}">EDIT</a>
-						<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': teacher.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
+						<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': student.id }) }}">EDIT</a>
+						<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
 					</td>
 				</tr>
 			</tbody>
