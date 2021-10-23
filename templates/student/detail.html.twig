@@ -5,8 +5,8 @@
 
 {% block body %}
 	<div class="container">
-		<h4 class="text-primary  text-center">TEACHER DETAIL</h4>
-		<a class="btn btn-outline-primary mb-3" href="{{ path('teacher_index') }}">TEACHER LIST</a>
+		<h4 class="text-primary  text-center">STUDENT DETAIL</h4>
+		<a class="btn btn-outline-primary mb-3" href="{{ path('student_index') }}">BACK TO STUDENT LIST LIST</a>
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
@@ -23,24 +23,23 @@
 					<td>{{student.name}}</td>
 					<td>{{student.dob|date('d/m/Y')}}</td>
 					<td>{{student.email}}</td>
-				
-						{# <img src="{{asset('img/teacher/'~teacher.image)}}" alt="avatar" width="50" height="50"/> #}
-				
-					<td>
-							{% for s in student.classroom %}
-							<a href="{{ path('classroom_detail', {'id': s.id }) }}">
-								{{ s.name }}
-							</a>
-							<br>
-						{% endfor %}
-					</td>
+
+				 <td><img src="{{asset('img/student/'~student.image)}}" alt="avatar" width="50" height="50"/></td>
 
 					<td>
-						<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': student.id }) }}">EDIT</a>
-						<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-{% endblock %}
+
+						<a href="{{ path('classroom_detail', {'id': student.classroom.id }) }}">
+							{{ student.classroom.name }}
+						</a>
+						<br>
+					
+				</td>
+			
+	
+
+		<td>
+			<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': student.id }) }}">EDIT</a>
+			<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
+		</td>
+	</tr>
+</tbody></table></div>{% endblock %}

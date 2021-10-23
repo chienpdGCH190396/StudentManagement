@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Student;
+use App\Form\StudentType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
 
 class StudentController extends AbstractController
 {
@@ -36,18 +40,58 @@ class StudentController extends AbstractController
             ]);
         }
     }
+
+        
+    #[Route("/student/add", name:"student_add")]
+    public function addStudentAction(request $request)
+        {
+            $student = new Student();
+            $form = $this->createForm(StudentType::class, $student);
+            $form->handleRequest($request);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $image = $student->getImage();          
+                $imgName = uniqid();         
+                $imgExtension = $image->guessExtension();
+                $imageName = $imgName . "." . $imgExtension;
+                try {
+                    $image->move(
+                        $this->getParameter('student_image'),
+                        $imageName
+                    );
+                } catch (FileException $a) {
+                    // throwException($a);
+                }
+                
+                $student->setImage($imageName);
+                $manager = $this->getDoctrine()->getManager();
+                $manager->persist($student);
+                $manager->flush();
+    
+                $this->addFlash('Success', 'Add new teacher successfully !');
+                return $this->redirectToRoute('student_index');
+            }
+            return $this->render(
+                'teacher/add.html.twig',
+                [
+                    "form" => $form->createView()
+                ]
+            );
+        }
+    
+
+
+}
+
      /**
      * @Route("/student/delete/{id}", name="student_delete")
      */
 
 
 
-     /**
-     * @Route("/student/add", name="student_add")
-     */
 
 
      /**
      * @Route("/student/edit/{id}", name="student_edit")
      */
-}
+
+
