@@ -67,31 +67,73 @@ class StudentController extends AbstractController
                 $manager->persist($student);
                 $manager->flush();
     
-                $this->addFlash('Success', 'Add new teacher successfully !');
+                $this->addFlash('Success', 'Add new student successfully !');
                 return $this->redirectToRoute('student_index');
             }
             return $this->render(
-                'teacher/add.html.twig',
+                'student/add.html.twig',
                 [
                     "form" => $form->createView()
                 ]
             );
         }
+
     
+      #[Route("/student/edit/{id}", name:"student_edit")]
+     
+      public function studentEditAction(Request $request, $id)
+      {
+          $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
+          $form = $this->createForm(StudentType::class, $student);
+          $form->handleRequest($request);
+          if ($form->isSubmitted() && $form->isValid()) {
+              $file = $form['image']->getData();
+              if ($file != null) {
+                  $image = $student->getImage();            
+                  $imgName = uniqid();
+                  $imgExtension = $image->guessExtension();
+                  $imageName = $imgName . "." . $imgExtension;
+                  try {
+                      $image->move(
+                          $this->getParameter('student_image'),
+                          $imageName
+                      );
+                  } catch (FileException $e) {
+                    //   throwException($e);
+                  }
+                  $student->setImage($imageName);
+              }
+              $manager = $this->getDoctrine()->getManager();
+              $manager->persist($student);
+              $manager->flush();
+  
+              $this->addFlash('Success', 'Edit student successfully !');
+              return $this->redirectToRoute('student_index');
+          }
+          return $this->render(
+              'student/edit.html.twig',
+              [
+                  "form" => $form->createView()
+              ]
+          );
+      }
+  
 
 
-}
+        #[Route("/student/delete/{id}", name:"student_delete")]
+        public function deleteStudentAction($id){
+            $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
+            if ($student == null) {
+                $this->addFlash('Error', 'Student is not existed');
+            } else {
+                $manager = $this->getDoctrine()->getManager();
+                $manager->remove($student);
+                $manager->flush();
+                $this->addFlash('Success', 'Student has been deleted successfully !');
+            }
+            return $this->redirectToRoute('student_index');
+        }
 
-     /**
-     * @Route("/student/delete/{id}", name="student_delete")
-     */
+     
 
-
-
-
-
-     /**
-     * @Route("/student/edit/{id}", name="student_edit")
-     */
-
-
+    }

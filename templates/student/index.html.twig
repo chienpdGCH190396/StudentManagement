@@ -5,8 +5,8 @@
 
 {% block body %}
 	<div class="container">
-		<h2 class="text-primary text-center">CLASSROOM LIST</h2>
-		<a class="btn btn-outline-primary mb-3" href="{{ path('student_add') }}">ADD CLASSROOM</a>
+		<h2 class="text-primary text-center">STUDENT LIST</h2>
+		<a class="btn btn-outline-primary mb-3" href="{{ path('student_add') }}">ADD STUDENT</a>
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
@@ -22,11 +22,11 @@
 						<a href="{{path('student_detail', {'id': student.id})}}">{{student.name}}</a>
 						</td>
 						<td>{{student.dob|date('d/m/Y')}}</td>
-                        <td></td>
+                      
 
 						<td>
-							{# <a class="btn btn-primary" href="{{ path('classroom_edit', {'id': classroom.id }) }}">EDIT</a>
-							<a class="btn btn-warning" href="{{ path('classroom_delete', {'id': classroom.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a> #}
+							<a class="btn btn-primary" href="{{ path('student_edit', {'id': student.id }) }}">EDIT</a>
+							 <a class="btn btn-warning" href="{{ path('student_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
 						</td>
 					</tr>
 				{% endfor %}
