@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All courses
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h2 class="text-primary text-center">COURSE LIST</h2>
+		<a class="btn btn-outline-primary mb-3" href="{{ path('course_add') }}">ADD COURSE</a>
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Department</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for course in courses %}
+					<tr>
+						<td>
+						<a href="{{path('course_detail', {'id': course.id})}}">{{course.name}}</a>
+						</td>
+						<td>{{course.type}}</td>
+						<td>
+							<a class="btn btn-primary" href="{{ path('course_edit', {'id': course.id }) }}">EDIT</a>
+							<a class="btn btn-warning" href="{{ path('course_delete', {'id': course.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

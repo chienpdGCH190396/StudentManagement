@@ -1,11 +1,11 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Add Classroom
+{% block title %}Edit Course
 {% endblock %}
 
 {% block body %}
 	<div class="container-fluid mt-3">
-		<h2 class="text-center mt-2">ADD CLASSROOM</h2>
+		<h2 class="text-center mt-2">EDIT COURSE</h2>
 		<div class="col-md-6"></div>
 		{{ form_start (form) }}
 		<div class="form-group">
@@ -32,9 +32,16 @@
                })
             }}
 		</div>
-		
+		<div class="form-group">
+			{{ form_label (form.classrooms) }}
+			{{ form_widget (form.classrooms,
+               {
+                  'attr' : {'class' : 'form-control'}
+               })
+            }}
+		</div>
 		<div class="form-group text-center mt-3">
-			<button class="btn btn-primary" type="submit">ADD</button>
+			<button class="btn btn-primary" type="submit">EDIT</button>
 		</div>
 		{{ form_end (form) }}
 	</div>

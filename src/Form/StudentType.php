@@ -18,19 +18,20 @@ class StudentType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Student Name',
+                'label' => 'Name',
                 'required' => true
             ])
             ->add('dob', DateType::class, [
-                'label' => 'Student Date of Birth',
+                'label' => 'Date of Birth',
                 'required' => true
             ])
             ->add('email', TextType::class, [
-                'label' => 'Student Email',
+                'label' => 'Email',
                 'required' => true
             ])
             ->add('image', FileType::class, [
-                'label' => 'Student Avatar',
+                'label' => 'Avatar',
+                'data_class' => null,
                 'required' => is_null($builder->getData()->getImage())
             ])
             ->add('classroom', EntityType::class, [

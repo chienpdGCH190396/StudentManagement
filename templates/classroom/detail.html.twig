@@ -13,9 +13,11 @@
 					<th scope="col">Name</th>
 					<th scope="col">Type</th>
 					<th scope="col">Description</th>
-					<th scope="col">Action</th>
+					<th scope="col">Courses</th>
 					<th scope="col">Teachers</th>
 					<th scope="col">Students</th>
+					<th scope="col">Action</th>
+
 				</tr>
 			</thead>
 			<tbody>
@@ -23,18 +25,24 @@
 					<th scope="row">{{classroom.name}}</th>
 					<td>{{classroom.type}}</td>
 					<td>{{classroom.description}}</td>
+
 					<td>
-						<a class="btn btn-primary" href="{{ path('classroom_edit', {'id': classroom.id }) }}">EDIT</a>
-						<a class="btn btn-warning" href="{{ path('classroom_delete', {'id': classroom.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
+						{% for s in classroom.courses %}
+							<a href="{{ path('course_detail', {'id': s.id }) }}">
+								{{ s.name }}
+							</a>
+							<br>
+						{% endfor %}
 					</td>
+
 					<td>
-            		{% for a in classroom.teachers %}
+						{% for a in classroom.teachers %}
 							<a href="{{ path('classroom_detail', {'id': a.id }) }}">
 								{{ a.name }}
 							</a>
 							<br>
 						{% endfor %}
-            		</td>
+					</td>
 					<td>
 						{% for s in classroom.students %}
 							<a href="{{ path('student_detail', {'id': s.id }) }}">
@@ -42,6 +50,11 @@
 							</a>
 							<br>
 						{% endfor %}
+					</td>
+
+					<td>
+						<a class="btn btn-primary" href="{{ path('classroom_edit', {'id': classroom.id }) }}">EDIT</a>
+						<a class="btn btn-warning" href="{{ path('classroom_delete', {'id': classroom.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
 					</td>
 				</tr>
 

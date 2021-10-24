@@ -2,17 +2,16 @@
 
 namespace App\Form;
 
-use App\Entity\Teacher;
+use App\Entity\Course;
 use App\Entity\Classroom;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class TeacherType extends AbstractType
+class CourseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -22,29 +21,32 @@ class TeacherType extends AbstractType
                 'label' => "Name",
                 'required' => true
             ])
-            ->add('dob', DateType::class,
+
+            ->add('type', ChoiceType::class,
             [
-                'label' => "Birthdate",
-                'required' => true
+                'label' => 'Department',
+                'required' => true,
+                'choices' => [
+                    "IT" => "IT",
+                    "Marketing" => "Marketing",
+                    "Desgin" => "Desgin"
+                ] 
             ])
-            ->add('email', TextType::class,
+
+            ->add('description', TextType::class,
             [
-                'label' => "Email",
-                'required' => true
+                'label' => 'Description',
+                'required' => false
             ])
-            ->add('image', FileType::class,
+
+            ->add('classrooms', EntityType::class,
             [
-                'label' => "Teacher Image",
-                'data_class' => null,
-                'required' => is_null($builder->getData()->getImage())
-            ])
-            ->add('classroom', EntityType::class,
-            [
-                'label' => "Classroom",
+                'label' => "Classrooms",
                 'class' => Classroom::class,
-                'choice_label' => "name",
+                'required' => true,
+                'choice_label' => 'name',
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
             ])
         ;
     }
@@ -52,7 +54,7 @@ class TeacherType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Teacher::class,
+            'data_class' => Course::class,
         ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Course;
+use App\Entity\Student;
 use App\Entity\Teacher;
 use App\Entity\Classroom;
 use Symfony\Component\Form\AbstractType;
@@ -18,12 +20,13 @@ class ClassroomType extends AbstractType
         $builder
             ->add('name', TextType::class,
             [
-                'label' => 'Classroom Name',
+                'label' => 'Name',
                 'required' => true 
             ])
+
             ->add('type', ChoiceType::class,
             [
-                'label' => 'Classroom Type',
+                'label' => 'Department',
                 'required' => true,
                 'choices' => [
                     "IT" => "IT",
@@ -31,6 +34,7 @@ class ClassroomType extends AbstractType
                     "Desgin" => "Desgin"
                 ]
             ])
+            
             ->add('description', TextType::class,
             [
                 'label' => 'Description',
@@ -45,6 +49,24 @@ class ClassroomType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
              ])
+
+             ->add('students', EntityType::class, [
+                'label' => "Students",
+                'class' => Student::class,
+                'required' => true,
+               'choice_label' => "name",
+               'multiple' => true,
+               'expanded' => true,
+            ])
+
+            ->add('courses', EntityType::class, [
+                'label' => "Courses",
+                'class' => Course::class,
+                'required' => true,
+               'choice_label' => "name",
+               'multiple' => true,
+               'expanded' => true,
+            ])
         ;
     }
 

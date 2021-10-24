@@ -40,6 +40,24 @@
                })
             }}
 		</div>
+
+		<div class="form-group">
+			{{ form_label (form.students) }}
+			{{ form_widget (form.students,
+               {
+                  'attr' : {'class' : 'form-control'}
+               })
+            }}
+		</div>
+
+		<div class="form-group">
+			{{ form_label (form.courses) }}
+			{{ form_widget (form.courses,
+               {
+                  'attr' : {'class' : 'form-control'}
+               })
+            }}
+		</div>
 		<div class="form-group text-center mt-3">
 			<button class="btn btn-primary" type="submit">EDIT</button>
 		</div>

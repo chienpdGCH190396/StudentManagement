@@ -89,7 +89,7 @@ class Student
         return $this->image;
     }
 
-    public function setImage($image): self
+    public function setImage($image)
     {
         if ($image != null) {
             $this->image = $image;
