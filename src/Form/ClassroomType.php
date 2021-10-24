@@ -18,56 +18,64 @@ class ClassroomType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class,
-            [
-                'label' => 'Name',
-                'required' => true 
-            ])
-
-            ->add('type', ChoiceType::class,
-            [
-                'label' => 'Department',
-                'required' => true,
-                'choices' => [
-                    "IT" => "IT",
-                    "Marketing" => "Marketing",
-                    "Desgin" => "Desgin"
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'label' => 'Name',
+                    'required' => true
                 ]
-            ])
-            
-            ->add('description', TextType::class,
-            [
-                'label' => 'Description',
-                'required' => false
-            ])
+            )
 
-             ->add('teachers', EntityType::class, [
-                 'label' => "Teachers",
-                 'class' => Teacher::class,
-                 'required' => true,
-                'choice_label' => "name",
-                'multiple' => true,
-                'expanded' => true,
-             ])
+            ->add(
+                'type',
+                ChoiceType::class,
+                [
+                    'label' => 'Department',
+                    'required' => true,
+                    'choices' => [
+                        "IT" => "IT",
+                        "Marketing" => "Marketing",
+                        "Desgin" => "Desgin"
+                    ]
+                ]
+            )
 
-             ->add('students', EntityType::class, [
-                'label' => "Students",
-                'class' => Student::class,
-                'required' => true,
-               'choice_label' => "name",
-               'multiple' => true,
-               'expanded' => true,
-            ])
+            ->add(
+                'description',
+                TextType::class,
+                [
+                    'label' => 'Description',
+                    'required' => false
+                ]
+                );
 
-            ->add('courses', EntityType::class, [
-                'label' => "Courses",
-                'class' => Course::class,
-                'required' => true,
-               'choice_label' => "name",
-               'multiple' => true,
-               'expanded' => true,
-            ])
-        ;
+            // ->add('teachers', EntityType::class, [
+            //     'label' => "Teachers",
+            //     'class' => Teacher::class,
+            //     'required' => true,
+            //     'choice_label' => "name",
+            //     'multiple' => true,
+            //     'expanded' => true,
+            // ])
+
+            // ->add('students', EntityType::class, [
+            //     'label' => "Students",
+            //     'class' => Student::class,
+            //     'required' => true,
+            //     'choice_label' => "name",
+            //     'multiple' => true,
+            //     'expanded' => true,
+            // ])
+
+            // ->add('courses', EntityType::class, [
+            //     'label' => "Courses",
+            //     'class' => Course::class,
+            //     'required' => true,
+            //     'choice_label' => "name",
+            //     'multiple' => true,
+            //     'expanded' => true,
+            // ])
     }
 
     public function configureOptions(OptionsResolver $resolver): void

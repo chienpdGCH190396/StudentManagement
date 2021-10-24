@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Teacher Detail
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h2 class="text-primary  text-center">STUDENT DETAIL</h2>
+		<a class="btn btn-outline-primary mb-3" href="{{ path('student_index') }}">BACK TO STUDENTS LIST</a>
+		<table class="table">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Date of Birth</th>
+					<th scope="col">Email</th>
+					<th scope="col">Image</th>
+					<th scope="col">Classroom</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{student.name}}</td>
+					<td>{{student.dob|date('d/m/Y')}}</td>
+					<td>{{student.email}}</td>
+
+				 <td><img src="{{asset('img/student/'~student.image)}}" alt="avatar" width="50" height="50"/></td>
+
+					<td>
+
+						<a href="{{ path('classroom_detail', {'id': student.classroom.id }) }}">
+							{{ student.classroom.name }}
+						</a>
+						<br>
+					
+				</td>
+			
+	
+
+		<td>
+			<a class="btn btn-primary" href="{{ path('student_edit', {'id': student.id }) }}">EDIT</a>
+			<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
+		</td>
+	</tr>
+</tbody></table></div>{% endblock %}

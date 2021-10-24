@@ -1,45 +1,77 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Teacher Detail
+{% block title %}Student Detail
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset ('css/detail.css')}}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h4 class="text-primary  text-center">STUDENT DETAIL</h4>
-		<a class="btn btn-outline-primary mb-3" href="{{ path('student_index') }}">BACK TO STUDENTS LIST</a>
-		<table class="table">
-			<thead class="thead-light">
-				<tr>
-					<th scope="col">Name</th>
-					<th scope="col">Date of Birth</th>
-					<th scope="col">Email</th>
-					<th scope="col">Image</th>
-					<th scope="col">Classroom</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>{{student.name}}</td>
-					<td>{{student.dob|date('d/m/Y')}}</td>
-					<td>{{student.email}}</td>
+	<div class="container bootstrap snippets bootdey">
+		<div class="row ng-scope">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-body text-center mt-2">
+						<div class="pv-lg"><img class="center-block img-responsive img-circle img-thumbnail thumb150px" src="{{asset('img/student/'~student.image)}}" alt="Contact"></div>
+						<h3 class="m0 text-bold">{{student.name}}</h3>
+						<div class="text-center">
+							<a style="margin-bottom:15px" class="btn btn-primary" href="{{ path('student_edit', {'id': student.id }) }}">EDIT</a>
+							<a style="margin-bottom:15px" class="btn btn-warning" href="{{ path('student_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
+							<a class="btn btn-outline-primary mb-3" href="{{ path('student_index') }}">BACK TO STUDENTS LIST</a>
+						</div>
+					</div>
+				</div>
 
-				 <td><img src="{{asset('img/student/'~student.image)}}" alt="avatar" width="50" height="50"/></td>
+			</div>
+			<div class="col-md-8">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="mt-2">
+							<div class="h4 text-center">STUDENT DETAIL</div>
+							<div class="row pv-lg">
+								<div class="col-lg-2"></div>
+								<div
+									class="col-lg-8">
+									
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Name</label>
+										<div class="col-sm-10">
+											<input class="form-control" id="inputContact1" type="text" placeholder="" value="{{student.name}}" disabled>
+										</div>
+									</div>
 
-					<td>
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Birthday</label>
+										<div class="col-sm-10">
+											<input class="form-control" id="inputContact1" type="text" placeholder="" value="{{student.dob|date('d/m/Y')}}" disabled>
+										</div>
+									</div>
 
-						<a href="{{ path('classroom_detail', {'id': student.classroom.id }) }}">
-							{{ student.classroom.name }}
-						</a>
-						<br>
-					
-				</td>
-			
-	
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Email</label>
+										<div class="col-sm-10">
+											<input class="form-control" id="inputContact1" type="text" placeholder="" value="{{student.email}}" disabled>
+										</div>
+									</div>
 
-		<td>
-			<a class="btn btn-primary" href="{{ path('student_edit', {'id': student.id }) }}">EDIT</a>
-			<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
-		</td>
-	</tr>
-</tbody></table></div>{% endblock %}
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Classroom</label>
+										<div class="col-sm-10">
+											<a href="{{ path('classroom_detail', {'id': student.classroom.id }) }}">
+												{{ student.classroom.name }}
+											</a>
+										</div>
+									</div>
+																	
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

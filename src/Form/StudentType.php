@@ -22,7 +22,7 @@ class StudentType extends AbstractType
                 'required' => true
             ])
             ->add('dob', DateType::class, [
-                'label' => 'Date of Birth',
+                'label' => 'Birthday',
                 'required' => true
             ])
             ->add('email', TextType::class, [
