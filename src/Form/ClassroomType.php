@@ -48,7 +48,7 @@ class ClassroomType extends AbstractType
                     'label' => 'Description',
                     'required' => false
                 ]
-                );
+                )
 
             // ->add('teachers', EntityType::class, [
             //     'label' => "Teachers",
@@ -76,6 +76,7 @@ class ClassroomType extends AbstractType
             //     'multiple' => true,
             //     'expanded' => true,
             // ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

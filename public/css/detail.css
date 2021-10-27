@@ -19,3 +19,63 @@ body{
     width: 48px!important;
     height: 48px!important;
 }
+
+
+.login-container{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-row-gap: 10px;
+    grid-template-rows: minmax(60px, auto);
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.login-text{
+    grid-column: 2/3;
+    justify-self: center;
+}
+
+.login-form{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    justify-self: center;
+    align-self: center;
+    border: none;
+    font-size: 20px;
+    padding: 8px 10px;
+    width: 100%;
+    margin: 5px auto;
+    
+}
+
+.pass-form{
+    grid-column: 2/3;
+    grid-row: 3/4;
+    justify-self: center;
+    
+}
+
+
+
+.btn-log input{
+    border-radius: 6px;
+    text-align: center;
+    padding: 6px 125px;
+    border: none;
+    color:#fff;
+    background-color: black;
+    
+}
+
+.create-pass{
+    grid-column: 2/3;
+    grid-row: 4/5;
+    justify-self: center;
+    
+    
+}
+
+.create-pass a{
+    text-decoration: none;
+    color: #582012;
+}
