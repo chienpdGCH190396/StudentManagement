@@ -1,66 +1,107 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block title %}Classroom Detail
 {% endblock %}
 
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset ('css/detail.css')}}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% endblock %}
+
 {% block body %}
-	<div class="container">
-		<h2 class="text-primary  text-center">CLASSROOM DETAIL</h2>
-		<a class="btn btn-outline-primary mb-3" href="{{ path('classroom_index') }}">BACK TO CLASSROOM LIST</a>
-		<table class="table">
-			<thead class="thead-light">
-				<tr>
-					<th scope="col">Name</th>
-					<th scope="col">Type</th>
-					<th scope="col">Description</th>
-					<th scope="col">Courses</th>
-					<th scope="col">Teachers</th>
-					<th scope="col">Students</th>
-					{% if is_granted('ROLE_ADMIN') %}
-					<th scope="col">Action</th>
-					{% endif %}
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">{{classroom.name}}</th>
-					<td>{{classroom.type}}</td>
-					<td>{{classroom.description}}</td>
+	<div class="container bootstrap snippets bootdey">
+		<div class="row ng-scope">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-body text-center mt-2">
+						<h3 class="m0 text-bold">{{classroom.name}}</h3>
+						{% if is_granted('ROLE_ADMIN') %}
+							<div class="text-center">
+								<a style="margin-bottom:15px" class="btn btn-primary" href="{{ path('classroom_edit', {'id': classroom.id }) }}">EDIT</a>
+								<a style="margin-bottom:15px" class="btn btn-warning" href="{{ path('classroom_delete', {'id': classroom.id }) }}" onclick="return confirm('Are you sure to delete this classroom ?')">DELETE</a>
 
-					<td>
-						{% for s in classroom.courses %}
-							<a href="{{ path('course_detail', {'id': s.id }) }}">
-								{{ s.name }}
-							</a>
-							<br>
-						{% endfor %}
-					</td>
 
-					<td>
-						{% for a in classroom.teachers %}
-							<a href="{{ path('teacher_detail', {'id': a.id }) }}">
-								{{ a.name }}
-							</a>
-							<br>
-						{% endfor %}
-					</td>
-					<td>
-						{% for s in classroom.students %}
-							<a href="{{ path('student_detail', {'id': s.id }) }}">
-								{{ s.name }}
-							</a>
-							<br>
-						{% endfor %}
-					</td>
-					{% if is_granted('ROLE_ADMIN') %}
-					<td>
-						<a class="btn btn-primary" href="{{ path('classroom_edit', {'id': classroom.id }) }}">EDIT</a>
-						<a class="btn btn-warning" href="{{ path('classroom_delete', {'id': classroom.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
-					</td>
-					{% endif %}
-				</tr>
+							</div>
+						{% endif %}
+						<a class="btn btn-outline-primary mb-3" href="{{ path('classroom_index') }}">BACK TO CLASSROOM LIST</a>
 
-			</tbody>
-		</table>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-8">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="mt-2">
+							<div class="h4 text-center">CLASSROOM DETAIL</div>
+							<div class="row pv-lg">
+								<div class="col-lg-2"></div>
+								<div class="col-lg-8">
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Name</label>
+										<div class="col-sm-10">
+											<input class="form-control" id="inputContact1" type="text" placeholder="" value="{{classroom.name}}" disabled>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Type</label>
+										<div class="col-sm-10">
+											<input class="form-control" id="inputContact1" type="text" placeholder="" value="{{classroom.type}}" disabled>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Description</label>
+										<div class="col-sm-10">
+											<input class="form-control" id="inputContact1" type="text" placeholder="" value="{{classroom.description}}" disabled>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Courses</label>
+										<div class="col-sm-10">
+											{% for s in classroom.courses %}
+												<a href="{{ path('course_detail', {'id': s.id }) }}">
+													{{ s.name }}
+												</a>
+
+											{% endfor %}
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Teachers</label>
+										<div class="col-sm-10">
+											{% for s in classroom.teachers %}
+												<a href="{{ path('teacher_detail', {'id': a.id }) }}">
+													{{ a.name }}
+												</a>
+
+											{% endfor %}
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label" for="inputContact1">Students</label>
+										<div class="col-sm-10">
+											{% for s in classroom.students %}
+												<a href="{{ path('student_detail', {'id': s.id }) }}">
+													{{ s.name }}
+												</a>
+												<br>
+											{% endfor %}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 {% endblock %}
+
