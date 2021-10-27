@@ -146,11 +146,4 @@ class StudentController extends AbstractController
         return $this->redirectToRoute('student_index');
     }
 
-    /**
-     * @Route("/student/info", name="student_info")
-     */
-    public function studentInfo(): Response
-    {
-        return $this->render('student/info.html.twig', []);
-    }
 }
