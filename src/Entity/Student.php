@@ -39,7 +39,7 @@ class Student
 
     /**
      * @ORM\ManyToOne(targetEntity=Classroom::class, inversedBy="students")
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $classroom;
 
