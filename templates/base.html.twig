@@ -25,13 +25,20 @@
 			{% include "_nav.html.twig" %}
 		{% endblock %}
 
-		<div style="margin-top: 70px" class="container col-md-6 mt-3">
+		<div style="margin-top:80px" class="container col-md-6 mt-3">
 			{% for message in app.flashes('Error') %}
 				<p class="alert alert-danger">{{ message }}</p>
 			{% endfor %}
 			{% for message in app.flashes('Success') %}
 				<p class="alert alert-primary">{{ message }}</p>
 			{% endfor %}
+			{% for message in app.flashes('message') %}
+				<p class="alert alert-primary">{{ message }}</p>
+			{% endfor %}
+			{% for message in app.flashes('minMessage') %}
+				<p class="alert alert-primary">{{ message }}</p>
+			{% endfor %}
+
 		</div>
 
 		<div class="container" style="margin-top: 70px"> {% block body %}{% endblock %}

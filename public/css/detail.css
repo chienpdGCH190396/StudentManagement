@@ -97,3 +97,8 @@ body{
     border:1px rgb(221, 217, 217) solid ;
    
 }
+
+body > div.container.col-md-6.mt-3 > p{
+    position: relative;
+    top: 70px;
+}
