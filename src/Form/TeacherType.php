@@ -34,7 +34,7 @@ class TeacherType extends AbstractType
             ])
             ->add('image', FileType::class,
             [
-                'label' => "Teacher Image",
+                'label' => "Avatar",
                 'data_class' => null,
                 'required' => is_null($builder->getData()->getImage())
             ])
