@@ -15,7 +15,9 @@
 					<th scope="col">Email</th>
 					<th scope="col">Image</th>
 					<th scope="col">Classroom</th>
+					{% if is_granted('ROLE_ADMIN') %}
 					<th scope="col">Action</th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -35,11 +37,12 @@
 							<br>
 						{% endfor %}
 					</td>
-
+					{% if is_granted('ROLE_ADMIN') %}
 					<td>
 						<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': teacher.id }) }}">EDIT</a>
 						<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': teacher.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
 					</td>
+					{% endif %}
 				</tr>
 			</tbody>
 		</table>

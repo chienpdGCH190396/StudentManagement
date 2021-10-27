@@ -16,11 +16,16 @@
 					<div class="panel-body text-center mt-2">
 						<div class="pv-lg"><img class="center-block img-responsive img-circle img-thumbnail thumb150px" src="{{asset('img/student/'~student.image)}}" alt="Contact"></div>
 						<h3 class="m0 text-bold">{{student.name}}</h3>
+						{% if is_granted('ROLE_ADMIN') %}
 						<div class="text-center">
 							<a style="margin-bottom:15px" class="btn btn-primary" href="{{ path('student_edit', {'id': student.id }) }}">EDIT</a>
 							<a style="margin-bottom:15px" class="btn btn-warning" href="{{ path('student_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
-							<a class="btn btn-outline-primary mb-3" href="{{ path('student_index') }}">BACK TO STUDENTS LIST</a>
+							
+							
 						</div>
+						{% endif %}
+						<a class="btn btn-outline-primary mb-3" href="{{ path('student_index') }}">BACK TO STUDENTS LIST</a>
+						
 					</div>
 				</div>
 

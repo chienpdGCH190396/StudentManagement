@@ -16,8 +16,9 @@
 					<th scope="col">Courses</th>
 					<th scope="col">Teachers</th>
 					<th scope="col">Students</th>
+					{% if is_granted('ROLE_ADMIN') %}
 					<th scope="col">Action</th>
-
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -51,11 +52,12 @@
 							<br>
 						{% endfor %}
 					</td>
-
+					{% if is_granted('ROLE_ADMIN') %}
 					<td>
 						<a class="btn btn-primary" href="{{ path('classroom_edit', {'id': classroom.id }) }}">EDIT</a>
 						<a class="btn btn-warning" href="{{ path('classroom_delete', {'id': classroom.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
 					</td>
+					{% endif %}
 				</tr>
 
 			</tbody>

@@ -6,13 +6,17 @@
 {% block body %}
 	<div class="container">
 		<h2 class="text-primary text-center">CLASSROOM LIST</h2>
+		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-outline-primary mb-3" href="{{ path('classroom_add') }}">ADD CLASSROOM</a>
+		{% endif %}
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">Name</th>
 					<th scope="col">Department</th>
+					{% if is_granted('ROLE_ADMIN') %}
 					<th scope="col">Action</th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -22,10 +26,13 @@
 						<a href="{{path('classroom_detail', {'id': classroom.id})}}">{{classroom.name}}</a>
 						</td>
 						<td>{{classroom.type}}</td>
+						{% if is_granted('ROLE_ADMIN') %}
+						
 						<td>
 							<a class="btn btn-primary" href="{{ path('classroom_edit', {'id': classroom.id }) }}">EDIT</a>
 							<a class="btn btn-warning" href="{{ path('classroom_delete', {'id': classroom.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
 						</td>
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>

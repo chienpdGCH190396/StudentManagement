@@ -6,14 +6,18 @@
 {% block body %}
 	<div class="container">
 		<h2 class="text-primary text-center">STUDENT LIST</h2>
+		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-outline-primary mb-3" href="{{ path('student_add') }}">ADD STUDENT</a>
+		{% endif %}
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">Name</th>
 					<th scope="col">Date Of Birth</th>
 				<th scope="col">Email</th>
+				{% if is_granted('ROLE_ADMIN') %}
 					<th scope="col">Action</th>
+				{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -25,11 +29,12 @@
 						<td>{{student.dob|date('d/m/Y')}}</td>
 							
 						<td>{{student.email}}</td>
-
+						{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a class="btn btn-primary" href="{{ path('student_edit', {'id': student.id }) }}">EDIT</a>
 							 <a class="btn btn-warning" href="{{ path('student_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">DELETE</a>
 						</td>
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>

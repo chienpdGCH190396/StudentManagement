@@ -6,14 +6,18 @@
 {% block body %}
 	<div class="container">
 		<h2 class="text-primary text-center">TEACHER LIST</h2>
+		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-outline-primary mb-3" href="{{ path('teacher_add') }}">ADD TEACHER</a>
+		{% endif %}
 		<table class="table">
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">Name</th>
 					<th scope="col">Email</th>
 					<th scope="col">Image</th>
+					{% if is_granted('ROLE_ADMIN') %}
 					<th scope="col">Action</th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -26,10 +30,12 @@
 						<td>
 							<img src="{{asset('img/teacher/'~teacher.image)}}" alt="avatar" width="50" height="50"/>
 						</td>
+						{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': teacher.id }) }}">EDIT</a>
 							<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': teacher.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
 						</td>
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>
