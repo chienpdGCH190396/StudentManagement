@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="container">
-		<h2 class="text-primary text-center">CLASSROOM LIST</h2>
+		<h2 class="text-center">CLASSROOM LIST</h2>
 		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-outline-primary mb-3" href="{{ path('classroom_add') }}">ADD CLASSROOM</a>
 		{% endif %}
