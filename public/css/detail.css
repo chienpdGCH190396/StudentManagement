@@ -79,3 +79,21 @@ body{
     text-decoration: none;
     color: #582012;
 }
+
+
+#registration_form_username{
+    border-radius: 6px;
+    
+    padding: 6px;
+    width: 320px;
+    border:1px rgb(221, 217, 217) solid ;
+   
+}
+#registration_form_plainPassword{
+    border-radius: 6px;
+    
+    padding: 6px;
+    width: 320px;
+    border:1px rgb(221, 217, 217) solid ;
+   
+}
