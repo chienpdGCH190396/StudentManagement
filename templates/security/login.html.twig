@@ -10,11 +10,10 @@
         <div class="alert alert-danger login-text text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+   
+    {% for message in app.session.flashbag.get('Error') %}
+		<p class="alert alert-primary">{{ message }}</p>
+	{% endfor %}
 
     {# <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputUsername">Username</label>
@@ -42,10 +41,15 @@
     </button> #}
 
     <div class="login-container">
-
+      
     <div class="login-text">
-          
-        <h1>Login</h1>
+        
+        <h1 class="text-center">Login</h1>
+         {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
         <hr class="hr--small">
     </div>   
     
