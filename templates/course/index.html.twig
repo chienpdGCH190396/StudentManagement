@@ -29,7 +29,7 @@
 						{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a class="btn btn-primary" href="{{ path('course_edit', {'id': course.id }) }}">EDIT</a>
-							<a class="btn btn-warning" href="{{ path('course_delete', {'id': course.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">DELETE</a>
+							<a class="btn btn-warning" href="{{ path('course_delete', {'id': course.id }) }}" onclick="return confirm('Are you sure to delete this course ?')">DELETE</a>
 						</td>
 						{% endif %}
 					</tr>
